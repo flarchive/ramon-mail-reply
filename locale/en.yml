@@ -1,0 +1,18 @@
+ramon-mail-reply:
+  admin:
+    settings:
+      title: Mail Reply
+      domain_label: Reply-to domain
+      domain_help: Domain that receives inbound replies (e.g. reply.example.com). Leave blank to disable.
+      webhook_secret_label: Webhook shared secret
+      webhook_secret_help: Required header X-Mail-Reply-Token for POST /api/mail-reply/inbound.
+      secret_label: HMAC key (optional)
+      secret_help: Key used to sign reply tokens. Leave blank to use APP_KEY.
+      token_ttl_days_label: Token TTL (days)
+      token_ttl_days_help: How long a unique Reply-To address stays valid. 0 = never expires.
+      strip_signatures_label: Strip signatures and quoted replies
+      strip_signatures_help: Run the full reply parser to drop signatures and quoted history from inbound emails.
+      show_badge_label: Show "via email" badge on replies
+      show_badge_help: Display a small badge next to posts that were created from an inbound email reply.
+  forum:
+    via_mail: via email

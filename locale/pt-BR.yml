@@ -1,0 +1,18 @@
+ramon-mail-reply:
+  admin:
+    settings:
+      title: Mail Reply
+      domain_label: Domínio de resposta
+      domain_help: "Domínio que recebe respostas (ex.: reply.seuforum.com). Deixe em branco para desativar."
+      webhook_secret_label: Segredo do webhook
+      webhook_secret_help: "Enviado como header X-Mail-Reply-Token em POST /api/mail-reply/inbound."
+      secret_label: Chave HMAC (opcional)
+      secret_help: Em branco utiliza a APP_KEY.
+      token_ttl_days_label: Validade do token (dias)
+      token_ttl_days_help: Quanto tempo o endereço Reply-To único permanece válido. 0 = nunca expira.
+      strip_signatures_label: Remover assinaturas e trechos citados
+      strip_signatures_help: Usa o parser completo para remover assinaturas e histórico citado dos e-mails recebidos.
+      show_badge_label: Mostrar selo "por e-mail" nas respostas
+      show_badge_help: Exibe um pequeno selo ao lado de posts criados a partir de uma resposta por e-mail.
+  forum:
+    via_mail: por e-mail
