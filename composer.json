@@ -1,0 +1,45 @@
+{
+    "name": "ramon/mail-reply",
+    "description": "Reply-by-email for Flarum: unique per-user/per-discussion Reply-To addresses plus inbound email processing (parse, strip quotes/signatures, post reply).",
+    "keywords": [
+        "flarum",
+        "mail",
+        "reply-by-email",
+        "inbound-email"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ramon Guilherme",
+            "email": "ramon@ramonguilherme.com.br",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "flarum/core": "^2.0.0",
+        "willdurand/email-reply-parser": "^2.9 || ^3.0"
+    },
+    "suggest": {
+        "webklex/php-imap": "Required only for IMAP polling (mail-reply:fetch); not needed when using a webhook provider like Mailgun or Postmark."
+    },
+    "autoload": {
+        "psr-4": {
+            "Ramon\\MailReply\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        },
+        "flarum-extension": {
+            "title": "Mail Reply",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-reply",
+                "backgroundColor": "#2e7d32",
+                "color": "#fff"
+            }
+        }
+    }
+}

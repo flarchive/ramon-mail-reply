@@ -1,0 +1,83 @@
+ramon-mail-reply:
+  admin:
+    settings:
+      title: Mail Reply
+      general_section_title: "Configuração geral"
+      general_section_help: "Modo de entrega, caixa de resposta e segurança do alias."
+      webhook_section_help: "Configure um provedor externo (Mailgun/Postmark/Cloudflare) OU rode o script PHP no servidor de e-mail."
+      imap_section_title: "🔌 Configuração via IMAP"
+      imap_section_help: "Servidor que será consultado a cada 60s pelo queue:work."
+      imap_server_card: "Servidor"
+      imap_auth_card: "Autenticação"
+      imap_options_card: "Opções"
+      imap_test_section: "Testar conexão"
+      imap_test_help: "Confere se o Flarum consegue conectar nas credenciais salvas."
+      appearance_section: "Aparência"
+      providers_label: "Provedores externos (Mailgun, Postmark, Cloudflare)"
+      providers_help: "Configure o provedor pra POST direto pro endpoint — sem script."
+      tab_general: Geral
+      tab_webhook: "PIPE (Webhook)"
+      tab_imap: IMAP
+      mode_warning: "Esta aba só fica ativa quando o Modo de entrega correspondente está selecionado. Volte para a aba Geral pra trocar."
+      delivery_mode_label: Modo de entrega
+      delivery_mode_help: "Escolha UMA forma de receber respostas. Os outros endpoints são desativados automaticamente."
+      mode_imap_option: "IMAP polling (roda dentro do queue:work)"
+      mode_webhook_option: "Webhook + script PHP no servidor de e-mail"
+      mode_disabled_option: "Desativado"
+      mode_imap_active: "✓ IMAP poller ativo. O job mail-reply:fetch roda dentro do queue:work e consulta a caixa a cada minuto. O endpoint /api/mail-reply/inbound retorna 403."
+      mode_webhook_active: "✓ Webhook ativo. POST para /api/mail-reply/inbound com header X-Mail-Reply-Token. O IMAP poller fica pausado. Veja o script PHP abaixo para colar no servidor de e-mail."
+      mode_disabled_active: "✗ Inbound desativado. Notificações ainda saem com Reply-To, mas nenhuma resposta volta como post no fórum."
+      webhook_secret_label: "Opção 1 — Segredo do webhook"
+      webhook_script_label: "Script PHP standalone (alternativa ao provedor)"
+      webhook_script_summary_hint: "clique para expandir"
+      webhook_secret_help: "Header X-Mail-Reply-Token exigido em POST /api/mail-reply/inbound. Gere com: openssl rand -hex 32"
+      webhook_script_help: "Cole este script no servidor de e-mail (não no Flarum). Salve em /usr/local/bin/forward-to-flarum.php, faça chmod 755, e configure o Forwarder/alias do domínio reply para usar pipe."
+      webhook_script_copy: Copiar script
+      webhook_script_download: "Baixar .php"
+      webhook_script_copied: "Script copiado."
+      webhook_install_title: "Passos no servidor de e-mail:"
+      webhook_install_step1_a: "SSH no servidor de e-mail"
+      webhook_install_step1_b: "e cole o script em"
+      webhook_install_and: "e"
+      webhook_install_with: "com"
+      webhook_install_step3_a: "No painel (DirectAdmin/cPanel):"
+      webhook_install_step3_b: "Forwarders → reply@dominio → Pipe"
+      webhook_install_step4_a: "Teste mandando uma menção. Acompanhe"
+      webhook_install_step4_b: "entrega esperada:"
+      webhook_install_step4_c: "com exit 0"
+      reply_address_label: Caixa de resposta
+      reply_address_help: "Caixa dedicada que recebe as respostas — pode estar em um domínio diferente do mail_from do Flarum. Precisa aceitar qualquer alias \"+algo\" sob o mesmo local part. Exemplo: inbox@reply.seuforum.com."
+      forwarding_address_label: Status da caixa de resposta
+      forwarding_address_help: "O Flarum continua enviando pelo mail_from normal — sem mexer nele. Apenas adicionamos um header Reply-To apontando para o endereço abaixo. Quando o usuário responde, a mensagem cai num alias \"+TAG\" da caixa dedicada."
+      webhook_section_title: "🔧 Configuração via PIPE (Webhook)"
+      mailbox_base_label_imap: "Caixa de resposta (alvo do IMAP):"
+      mailbox_base_label_webhook: "Caixa de resposta (capturada pelo PIPE/script):"
+      mailbox_base_label_disabled: "Caixa de resposta:"
+      mailbox_alias_label: "Padrão do Reply-To (adicionado em toda notificação):"
+      mailbox_pending: "Preencha o campo \"Caixa de resposta\" acima para ver o padrão."
+      secret_label: Chave HMAC (avançado)
+      secret_help: "Assina os aliases de resposta para que não possam ser forjados. Em branco gera uma chave aleatória no primeiro uso. NÃO troque depois que as notificações já saíram — os aliases antigos viram inválidos."
+      show_badge_label: Mostrar selo "por e-mail" nas respostas
+      show_badge_help: Exibe um pequeno selo ao lado de posts criados a partir de uma resposta por e-mail.
+      imap_host_label: Servidor IMAP
+      imap_host_help: "Servidor a ser consultado. Requer o pacote webklex/php-imap."
+      imap_port_label: Porta IMAP
+      imap_port_help: "Normalmente 993 para SSL/TLS, 143 para STARTTLS ou texto puro."
+      imap_encryption_label: Criptografia IMAP
+      imap_encryption_help: "SSL/TLS é o recomendado; \"nenhuma\" apenas para intranets confiáveis."
+      imap_username_label: Usuário IMAP
+      imap_username_help: "Normalmente o próprio endereço da caixa de respostas."
+      imap_password_label: Senha IMAP
+      imap_password_help: "App-password recomendado (Gmail, Microsoft 365). Armazenada em texto puro — restrinja o acesso de admin."
+      imap_mailbox_label: Pasta IMAP
+      imap_mailbox_help: "Padrão: INBOX."
+      imap_delete_after_label: Apagar mensagens após coleta
+      imap_delete_after_help: "Quando desativado, mensagens são apenas marcadas como lidas — útil em testes."
+      imap_validate_cert_label: Validar certificado TLS
+      imap_validate_cert_help: "Mantenha ativado em produção; desative apenas em testes com certificado autoassinado."
+      imap_test_button: Testar conexão IMAP
+      imap_test_running: Testando…
+      imap_test_ok: Conexão IMAP bem-sucedida
+      imap_test_failed: Falha no teste IMAP
+  forum:
+    via_mail: via e-mail

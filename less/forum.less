@@ -1,0 +1,26 @@
+.MailReplyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--control-bg, rgba(0, 0, 0, 0.06));
+  color: var(--muted-color, #888);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+
+  .icon {
+    font-size: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .MailReplyBadge-text {
+      display: none;
+    }
+    padding: 2px 6px;
+  }
+}

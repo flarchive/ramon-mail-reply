@@ -1,0 +1,445 @@
+.MailReplyAdmin {
+  // ── Form controls ────────────────────────────────────────────────────────
+  .FormControl {
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--control-bg, #d8d8dc);
+    border-radius: 8px;
+    padding: 9px 13px;
+    width: 100%;
+    font-size: 13.5px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+    &::placeholder {
+      color: var(--muted-color, #9ca3af);
+    }
+
+    &:hover:not(:focus) {
+      border-color: var(--control-bg, #c4c4ca);
+    }
+
+    &:focus {
+      border-color: var(--primary-color, #2e7d32);
+      box-shadow: 0 0 0 3px fade(#2e7d32, 18%);
+      outline: none;
+    }
+  }
+
+  select.FormControl {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #888 50%),
+      linear-gradient(135deg, #888 50%, transparent 50%);
+    background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  // ── Button rhythm ────────────────────────────────────────────────────────
+  .Button {
+    --mr-btn-radius: 8px;
+    padding: 8px 14px;
+    border-radius: var(--mr-btn-radius);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    border: 1px solid transparent;
+    background: var(--control-bg, #f2f2f5);
+    color: var(--text-color, #1f2937);
+    transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
+
+    &:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    i { margin-right: 6px; opacity: 0.85; }
+
+    &--primary {
+      background: var(--primary-color, #2e7d32);
+      color: #fff;
+      &:hover:not(:disabled) { background: darken(#2e7d32, 6%); }
+    }
+
+    &--link {
+      background: transparent;
+      color: var(--primary-color, #2e7d32);
+      padding: 4px 6px;
+      &:hover:not(:disabled) { background: transparent; text-decoration: underline; }
+    }
+
+    &:disabled { opacity: 0.55; cursor: not-allowed; }
+  }
+
+  &-body {
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+
+  // ── Section (h2 + helpText + cards) ──────────────────────────────────────
+  &-section {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 28px 24px 56px;
+  }
+
+  &-section-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--control-bg, #e6e6e9);
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-color, #1f2937);
+    }
+
+    p.helpText {
+      margin: 0;
+      color: var(--muted-color, #6b7280);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+  }
+
+  // ── Card ─────────────────────────────────────────────────────────────────
+  &-card {
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--control-bg, #e6e6e9);
+    border-radius: 12px;
+    padding: 18px 20px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  &-card-header {
+    margin-bottom: 14px;
+    cursor: default;
+
+    h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    p.helpText {
+      margin: 0;
+      color: var(--muted-color, #6b7280);
+      font-size: 13px;
+    }
+  }
+
+  // ── Toggle list (rows + switches) ────────────────────────────────────────
+  &-toggleList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-toggleRow {
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+  }
+
+  // ── Field grid (2 cols on wide, 1 col on narrow) ─────────────────────────
+  &-fieldGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+
+    @media (max-width: 720px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── Sticky save bar ──────────────────────────────────────────────────────
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--control-bg, #e6e6e9);
+    border-radius: 12px;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.03);
+    margin-top: 8px;
+
+    &--sticky {
+      position: sticky;
+      bottom: 16px;
+      z-index: 5;
+    }
+  }
+
+  // ── Mode status callout ─────────────────────────────────────────────────
+  &-modeStatus {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    border-left: 4px solid;
+
+    &[data-mode='imap'] {
+      background: rgba(46, 125, 50, 0.08);
+      color: #1b5e20;
+      border-left-color: #1b5e20;
+    }
+
+    &[data-mode='webhook'] {
+      background: rgba(13, 71, 161, 0.08);
+      color: #0d47a1;
+      border-left-color: #0d47a1;
+    }
+
+    &[data-mode='disabled'] {
+      background: rgba(198, 40, 40, 0.08);
+      color: #b71c1c;
+      border-left-color: #b71c1c;
+    }
+  }
+
+  // ── Mailbox hint (key/value visual) ──────────────────────────────────────
+  &-hint {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--control-bg, rgba(0, 0, 0, 0.04));
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &-hint-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 13px;
+
+    strong {
+      font-weight: 600;
+    }
+
+    code {
+      flex: 0 1 auto;
+      padding: 2px 8px;
+      background: var(--body-bg, #fff);
+      border: 1px solid var(--control-bg, rgba(0, 0, 0, 0.1));
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12.5px;
+      word-break: break-all;
+    }
+  }
+
+  &-hint-pending {
+    color: var(--muted-color, #888);
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  // ── Key/value rows (URL+header em providers block) ──────────────────────
+  &-kv {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  &-kv-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    background: var(--control-bg, rgba(0, 0, 0, 0.03));
+    border-radius: 6px;
+    font-size: 13px;
+
+    strong { min-width: 140px; font-weight: 600; }
+
+    code {
+      flex: 1;
+      padding: 4px 8px;
+      background: var(--body-bg, #fff);
+      border: 1px solid var(--control-bg, rgba(0, 0, 0, 0.1));
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      word-break: break-all;
+    }
+  }
+
+  // ── Collapsible details (Mailgun/Postmark/Cloudflare/script) ────────────
+  &-details {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--control-bg, rgba(0, 0, 0, 0.08));
+    border-radius: 6px;
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--primary-color, #2e7d32);
+      list-style: revert;
+
+      &::marker, &::-webkit-details-marker {
+        color: var(--primary-color, #2e7d32);
+      }
+    }
+
+    ol {
+      margin: 10px 0 0 20px;
+      font-size: 13px;
+
+      li { margin-bottom: 4px; }
+    }
+
+    code {
+      background: var(--control-bg, rgba(0, 0, 0, 0.06));
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+  }
+
+  // ── Script collapsible card ──────────────────────────────────────────────
+  &-script {
+    > summary {
+      cursor: pointer;
+      list-style: revert;
+
+      &::marker, &::-webkit-details-marker {
+        color: var(--muted-color, #777);
+      }
+
+      h3 {
+        display: inline;
+        font-size: 15px;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    &-code {
+      background: #0d0d0d;
+      color: #e6e6e6;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      overflow: auto;
+      max-height: 400px;
+      margin: 0 0 12px;
+
+      code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        white-space: pre;
+      }
+    }
+
+    &-steps {
+      padding: 12px 14px;
+      background: var(--control-bg, rgba(0, 0, 0, 0.04));
+      border-radius: 6px;
+      font-size: 13px;
+
+      ol {
+        margin: 8px 0 0 18px;
+        padding: 0;
+
+        li { margin-bottom: 4px; }
+      }
+
+      code {
+        background: var(--body-bg, #fff);
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+      }
+    }
+  }
+
+  // ── Test result pill ─────────────────────────────────────────────────────
+  &-testResult {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    word-break: break-all;
+
+    &[data-ok='1'] {
+      background: rgba(46, 125, 50, 0.12);
+      color: #2e7d32;
+    }
+
+    &[data-ok='0'] {
+      background: rgba(198, 40, 40, 0.12);
+      color: #c62828;
+    }
+  }
+}
+
+// ── Admin sub-navigation (pills horizontais) ────────────────────────────────
+.MailReplyAdminNav {
+  display: flex;
+  gap: 4px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--control-bg, #e6e6e9);
+  background: var(--header-bg, #fafafa);
+  flex-wrap: wrap;
+  margin-bottom: 0;
+
+  &-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: var(--muted-color, #6b7280);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13.5px;
+    transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
+
+    i {
+      opacity: 0.65;
+      font-size: 12.5px;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-color, #1f2937);
+      text-decoration: none;
+
+      i { opacity: 0.85; }
+    }
+
+    &.active {
+      background: var(--primary-color, #2e7d32);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.25);
+
+      i { opacity: 1; }
+    }
+  }
+}
